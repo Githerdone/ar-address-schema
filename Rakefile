@@ -28,3 +28,15 @@ task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
 end
 
+task "db:faker" do
+    1000.times do
+      Contact.create(
+          :first_name => Faker::Name.first_name,
+          :last_name => Faker::Name.last_name,
+          :company => Faker::Company.name,
+          :phone => Faker::PhoneNumber.phone_number,
+          :email => Faker::Internet.email
+          )
+      end
+    end
+
